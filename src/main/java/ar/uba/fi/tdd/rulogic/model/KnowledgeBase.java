@@ -6,8 +6,10 @@ public class KnowledgeBase {
 	
 		DataBase db = new DataBase();
 		Query q = new QueryFactory().create(query,db);
-		return q.queryInDB();
+		if (q == null){
+			return false;
+		}else{
+			return q.queryInDB(db);
+			}
 	}
-	
-
 }

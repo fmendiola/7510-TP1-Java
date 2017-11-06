@@ -20,22 +20,53 @@ public class KnowledgeBaseTest {
 	@Test
 	public void test() {
 
-		Assert.assertTrue(this.knowledgeBase.answer("varon (javier)."));
-
+		Assert.assertFalse(this.knowledgeBase.answer("varon (javier)."));
 	}
 	
 	@Test
 	public void test_mujer_maria_isTrue() {
 
 		Assert.assertTrue(this.knowledgeBase.answer("mujer(maria) ."));
-
 	}
 	
 	@Test
 	public void test_juan_padre_pepe_isTrue() {
 
 		Assert.assertTrue(this.knowledgeBase.answer("padre(juan, pepe)."));
-
 	}
+	
+	@Test
+	public void test_invalid_query_isFalse() {
+		Assert.assertFalse(this.knowledgeBase.answer("varo"));
+	}
+	
+	@Test
+	public void test_valid_fact_isFalse() {
 
+		Assert.assertFalse(this.knowledgeBase.answer("mujer(pepe) ."));
+	}
+	
+	@Test
+	public void test_valid_rule_isTrue() {
+
+		Assert.assertTrue(this.knowledgeBase.answer("hijo(pepe, juan)."));
+	}
+	
+	@Test
+	public void test_valid_rule_isFalse() {
+
+		Assert.assertFalse(this.knowledgeBase.answer("hijo(maria, juan)."));
+	}
+	
+	@Test
+	public void test_valid_rule_tio_isTrue() {
+
+		Assert.assertTrue(this.knowledgeBase.answer("tio(nicolas, alejandro, roberto)."));
+	}
+	
+	@Test
+	public void test_valid_rule_tio_isFalse() {
+
+		Assert.assertFalse(this.knowledgeBase.answer("tio(nicolas, mauro, roberto)."));
+	}
 }

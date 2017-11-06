@@ -1,11 +1,10 @@
 package ar.uba.fi.tdd.rulogic.model;
 
-public class Fact extends Query {
+public class Rule extends Query {
 	
 	private String query;
 	
-	public Fact(String query){
-		
+	public Rule(String query){
 		this.query = query.replaceAll("^\\s*","");
 	}
 
